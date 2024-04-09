@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nbc__standardtaskweek3_optional.ItemAdapter
 import com.example.nbc__standardtaskweek3_optional.databinding.FragmentRecyclerBinding
-import com.example.nbc__standardtaskweek3_optional.flowerData.DataSource
-import com.example.nbc__standardtaskweek3_optional.flowerData.flowerList
+import com.example.nbc__standardtaskweek3_optional.extension.showToast
 import com.example.nbc__standardtaskweek3_optional.ui.notifications.NotificationsViewModel
 
 class RecyclerFragment : Fragment() {
@@ -53,11 +51,11 @@ class RecyclerFragment : Fragment() {
             binding.rvItem.layoutManager = LinearLayoutManager(this.requireContext())
             binding.rvItem.adapter = itemAdapter
 
-            //toast 띄우기
+            //toast 띄우기 - extension
             itemAdapter.itemClickListener = object : ItemAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
                     val item = it[position]
-                    Toast.makeText(context, "${item.name} 클릭됨", Toast.LENGTH_SHORT).show()
+                    context?.showToast("${item.name} 클릭됨")
                 }
             }
         }
