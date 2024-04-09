@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,16 +40,26 @@ class RecyclerFragment : Fragment() {
         }
 
         //recyclerView 처리
-        initializeViews()
+        recyclerViewShow()
 
         return root
     }
 
-    private fun initializeViews() {
+    private fun recyclerViewShow() {
         notificationsViewModel = ViewModelProvider(requireActivity()).get(NotificationsViewModel::class.java)
         notificationsViewModel.flowers.observe(viewLifecycleOwner) {
+            val itemAdapter = ItemAdapter(it)
+
             binding.rvItem.layoutManager = LinearLayoutManager(this.requireContext())
-            binding.rvItem.adapter = ItemAdapter(it)
+            binding.rvItem.adapter = itemAdapter
+
+            //toast 띄우기
+            itemAdapter.itemClickListener = object : ItemAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val item = it[position]
+                    Toast.makeText(context, "${item.name} 클릭됨", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
