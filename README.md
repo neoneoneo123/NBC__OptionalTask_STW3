@@ -16,6 +16,9 @@
 ### 4. 싱글톤
 - synchronized를 사용하여 구현했습니다.
 
+### 5. extension
+- 데이터 전달, recyclerViwe에서 아이템 클릭 시 보여지는 Toast는 extension function으로 구현하였습니다.
+
 약간의 우여곡절이 있었지만,
 지난주 yummy donut 과제로 고통(?)받고, 지난주 강의에서 본 라이브 코딩 덕분에 구현 자체에 큰 어려움은 없었습니다!
 다만 다양한 방식의 Fragment 간 데이터 전달을 구현하면서 의도치 않게 bottomNavigation이 작동하는 부분은 더 공부가 필요할 것 같습니다.
@@ -23,5 +26,3 @@
 +)
 블로그에 Fragment 간 데이터 전달에 대한 실습 내용을 정리해두었습니다.
 https://velog.io/@neoneoneo/Android-Fragment-간-데이터-전달
-
-+) extension 구현 중
