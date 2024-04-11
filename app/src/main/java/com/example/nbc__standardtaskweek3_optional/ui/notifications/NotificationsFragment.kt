@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.nbc__standardtaskweek3_optional.databinding.FragmentNotificationsBinding
+import com.example.nbc__standardtaskweek3_optional.extension.showToast
 import com.example.nbc__standardtaskweek3_optional.flowerData.DataSource
 
 class NotificationsFragment : Fragment() {
@@ -38,6 +39,8 @@ class NotificationsFragment : Fragment() {
         binding.btnRecycler.setOnClickListener {
             notificationsViewModel = ViewModelProvider(requireActivity()).get(NotificationsViewModel::class.java)
             notificationsViewModel.setFlowerInfo(data)
+
+            context?.showToast("데이터 전달 완료")
         }
 
         return root
