@@ -10,8 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nbc__standardtaskweek3_optional.ItemAdapter
 import com.example.nbc__standardtaskweek3_optional.databinding.FragmentRecyclerBinding
-import com.example.nbc__standardtaskweek3_optional.flowerData.DataSource
-import com.example.nbc__standardtaskweek3_optional.flowerData.flowerList
+import com.example.nbc__standardtaskweek3_optional.extension.showToast
 import com.example.nbc__standardtaskweek3_optional.ui.notifications.NotificationsViewModel
 
 class RecyclerFragment : Fragment() {
@@ -39,16 +38,26 @@ class RecyclerFragment : Fragment() {
         }
 
         //recyclerView 처리
-        initializeViews()
+        recyclerViewShow()
 
         return root
     }
 
-    private fun initializeViews() {
+    private fun recyclerViewShow() {
         notificationsViewModel = ViewModelProvider(requireActivity()).get(NotificationsViewModel::class.java)
         notificationsViewModel.flowers.observe(viewLifecycleOwner) {
+            val itemAdapter = ItemAdapter(it)
+
             binding.rvItem.layoutManager = LinearLayoutManager(this.requireContext())
-            binding.rvItem.adapter = ItemAdapter(it)
+            binding.rvItem.adapter = itemAdapter
+
+            //toast 띄우기 - extension
+            itemAdapter.itemClickListener = object : ItemAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val item = it[position]
+                    context?.showToast("${item.name} 클릭됨")
+                }
+            }
         }
     }
 

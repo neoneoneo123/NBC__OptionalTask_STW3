@@ -16,6 +16,7 @@ import androidx.navigation.findNavController
 import com.example.nbc__standardtaskweek3_optional.R
 import com.example.nbc__standardtaskweek3_optional.databinding.FragmentDashboardBinding
 import com.example.nbc__standardtaskweek3_optional.databinding.FragmentHomeBinding
+import com.example.nbc__standardtaskweek3_optional.extension.showToast
 import com.example.nbc__standardtaskweek3_optional.flowerData.DataSource
 import com.example.nbc__standardtaskweek3_optional.flowerData.Flower
 import com.example.nbc__standardtaskweek3_optional.flowerData.flowerList
@@ -65,6 +66,8 @@ class HomeFragment : Fragment() {
         binding.btnSend.setOnClickListener {
             homeViewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java) //viewModel 초기화
             homeViewModel.setFlowerInfo(data[0].name, data[0].description) //데이터 설정
+
+            context?.showToast("데이터 전달 완료")
         }
 
 //        3. findNavController()로 전달 -> 전달 후 home 탭을 눌러도 dashboard 탭이 열러서 이상함
